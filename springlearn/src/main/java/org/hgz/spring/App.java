@@ -11,9 +11,9 @@ public class App {
   public static void main(String[] args) {
     ApplicationContext applicationContext = new FileSystemXmlApplicationContext(
         "E:\\workspace\\spring-study\\springlearn\\src\\main\\resources\\application.xml");
-    BeanB bean = applicationContext.getBean(BeanB.class);
+    IHelleService bean = applicationContext.getBean(IHelleService.class);
 
-    bean.sayA();
+    bean.sayHello("huangguozhong");
 
   }
 }

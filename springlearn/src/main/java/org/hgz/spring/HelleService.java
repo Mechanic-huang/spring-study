@@ -6,7 +6,7 @@ package org.hgz.spring;
  * @Copyright 2015 © anzhi.com
  * @Created 2017/7/3 16:00
  */
-public class HelleService {
+public class HelleService implements IHelleService{
 
   public static void main(String[] args) {
     char c = 'A' ;
@@ -25,7 +25,12 @@ public class HelleService {
     System.out.println(num) ;
   }
 
-  public void sayHello(){
+  public void sayHello(int a){
     System.out.println("hello,word");
+  }
+
+  public void sayHello(String name) {
+    System.out.println("name " + name);
+    sayHello(1);
   }
 }

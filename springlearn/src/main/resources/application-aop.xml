@@ -14,21 +14,22 @@
   default-autowire="byName" default-lazy-init="false">
 
   <!--<bean id="hello" class="org.hgz.spring.HelleService" ></bean>-->
-  <context:annotation-config />
 
-  <bean id="beanA" class="org.hgz.spring.BeanA" />
+  <bean class="org.hgz.spring.springaop.TestAbc" id="testAbc"/>
 
-  <bean id="beanB" class="org.hgz.spring.BeanB"></bean>
 
-  <bean class="org.hgz.spring.HelleService" id="helleService"/>
+  <bean id="testAdvisor" class="org.hgz.spring.springaop.TestAdvisor"/>
+  <bean id="testAOP" class="org.springframework.aop.framework.ProxyFactoryBean">
+    <property name="proxyInterfaces" value="org.hgz.spring.springaop.TestAbcInterface"/>
+    <property name="target" value="org.hgz.spring.springaop.TestAbc"/>
+    <!-- 配置已经定义好的通知器 -->
+    <property name="interceptorNames">
+      <list>
+        <value>testAdvisor</value>
+      </list>
+    </property>
 
-  <bean id="logInterceptor" class="org.hgz.spring.LogInterceptor"/>
 
-  <aop:config>
-    <aop:pointcut id="servicePointcut" expression="execution(public * org.hgz.spring..*.sayHello(..))"/>
 
-    <aop:aspect id="logAspect" ref="logInterceptor">
-      <aop:before method="before" pointcut-ref="servicePointcut"></aop:before>
-    </aop:aspect>
-  </aop:config>
+  </bean>
 </beans>
